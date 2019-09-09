@@ -1,0 +1,64 @@
+CREATE DATABASE `cos_cloud_user`;
+### 客户
+DROP TABLE `t_sys_customer_info` IF EXISTS;
+CREATE TABLE `t_sys_customer_info` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '标识 金优客户',
+  `name` VARCHAR(32) NOT NULL COMMENT '客户名称',
+  `identify` VARCHAR(64) NOT NULL COMMENT '识别标识',
+  `pcDeployUrl` VARCHAR(128) DEFAULT NULL COMMENT 'pc端的地址',
+  `delFlag` INT(1) DEFAULT '0' COMMENT '删除状态(1 删; 0未删)',
+  `note` VARCHAR(256) NOT NULL DEFAULT '' COMMENT '备注',
+  `UUID` VARCHAR(256) NOT NULL DEFAULT '' COMMENT '唯一标识',
+  `createTime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
+  `fVersion` INT(11) NOT NULL DEFAULT '1' COMMENT '版本',
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8
+
+## 用户信息
+DROP TABLE `t_user_info` IF EXISTS;
+CREATE TABLE `t_user_info` (
+  `id` BIGINT(20) NOT NULL COMMENT '标识 用户id',
+  `sysCustomer` VARCHAR(64) DEFAULT NULL COMMENT '客户标识',
+  `username` VARCHAR(20) DEFAULT NULL COMMENT '用户账号 唯一标识',
+  `name` VARCHAR(20) DEFAULT NULL COMMENT '用户名',
+  `userType` INT(4) DEFAULT NULL COMMENT '用户类型',
+  `sex` VARCHAR(12) DEFAULT NULL COMMENT '性别',
+  `address` VARCHAR(256) DEFAULT NULL COMMENT '用户地址',
+  `phone` VARCHAR (20) DEFAULT NULL COMMENT '登录电话',
+  `photo` VARCHAR(128) DEFAULT NULL COMMENT '头像',
+  `signature` VARCHAR(128) DEFAULT NULL COMMENT '签名',
+  `delFlag` INT(1) DEFAULT '0' COMMENT '删除状态(1删; 0未删)',
+  `createTime` DATETIME NOT NULL COMMENT '创建日期',
+  `createUser` VARCHAR(22) DEFAULT NULL COMMENT '创建者',
+  `updateUser` VARCHAR(22) DEFAULT NULL COMMENT '最后更新者',
+  `updateTime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB  DEFAULT CHARSET=utf8;
+
+## 用户密码信息
+DROP TABLE `t_user_imp_info` IF EXISTS;
+CREATE TABLE `t_user_imp_info` (
+  `id` BIGINT(20) NOT NULL COMMENT '标识 用户id',
+  `sysCustomer` VARCHAR(64) DEFAULT NULL COMMENT '客户标识',
+  `username` VARCHAR(20) DEFAULT NULL COMMENT '用户账号 唯一标识',
+  `password` VARCHAR(64) DEFAULT NULL COMMENT '头像',
+  `delFlag` INT(1) DEFAULT '0' COMMENT '删除状态(1删; 0未删)',
+  `createTime` DATETIME NOT NULL COMMENT '创建日期',
+  `createUser` VARCHAR(22) DEFAULT NULL COMMENT '创建者',
+  `updateUser` VARCHAR(22) DEFAULT NULL COMMENT '最后更新者',
+  `updateTime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB  DEFAULT CHARSET=utf8;
+
+## 客户ip黑名单
+DROP TABLE `t_ban_client_ip` IF EXISTS;
+CREATE TABLE `t_ban_client_ip` (
+  `id` BIGINT(20) NOT NULL COMMENT '标识 id',
+  `sysCustomer` VARCHAR(64) DEFAULT NULL COMMENT '客户标识',
+  `ip` VARCHAR(20) DEFAULT NULL COMMENT 'ip地址',
+  `note` VARCHAR(256) DEFAULT NULL COMMENT '备注',
+  `delFlag` INT(1) DEFAULT '0' COMMENT '删除状态(1删; 0未删)',
+  `createTime` DATETIME NOT NULL COMMENT '创建日期',
+  `createUser` VARCHAR(22) DEFAULT NULL COMMENT '创建者',
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB  DEFAULT CHARSET=utf8;

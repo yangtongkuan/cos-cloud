@@ -1,0 +1,33 @@
+
+
+
+server:
+  port: 8781
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+spring:
+  application:
+    name: order-service
+
+## http的默认连接时长是10s 默认读取时间是60s 但是存在hystrix默认是1s超时;
+### 设置服务间之间的调用响应时间  时间不宜超过三秒
+feign:
+  ## 开启熔断 降级处理(新版本默认是关闭的)
+  hystrix:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 1000
+        readTimeout: 2000
+
+## 设置hystrix的超时时间默认是1s 主要控制 @HystrixCommand 注解的时间
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000

@@ -1,0 +1,35 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: user-server
+  ###数据库配置
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/xdclass?characterEncoding=UTF-8
+    data-username: root
+    data-password: sdbs
+    driver-class-name: com.mysql.jdbc.Driver
+    tomcat:
+      max-active: 200
+      max-idle: 40
+      min-idle: 20
+      initial-size: 20
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+         ## springboot jpa 默认使用驼峰式自动转换方式; org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl 直接进行表字段的映射
+         ## org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy 驼峰式实体类与表数据进行转换 遇见大写字符则在之前加上斜划线（在没有@table 和 @Column的标注的前提下）
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    ## 方言 用户数据库sql的生成方式  和事务有关系
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+
+
