@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cos-cloud-user/cos-cloud-user.iml" filepath="$PROJECT_DIR$/cos-cloud-user/cos-cloud-user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cos-cloud-vue/cos-cloud-vue.iml" filepath="$PROJECT_DIR$/cos-cloud-vue/cos-cloud-vue.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/eureka-server/eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/order-server/order-server.iml" filepath="$PROJECT_DIR$/order-server/order-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/product-server/product-server.iml" filepath="$PROJECT_DIR$/product-server/product-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user-server/user-server.iml" filepath="$PROJECT_DIR$/user-server/user-server.iml" />
+    </modules>
+  </component>
+</project>
