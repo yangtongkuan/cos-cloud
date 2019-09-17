@@ -1,7 +1,6 @@
 package com.cos.cloud.user.service.user;
 
 import com.cos.cloud.user.dao.user.UserRepository;
-import com.cos.cloud.model.bean.user.QUserInfo;
 import com.cos.cloud.user.model.bean.user.UserInfo;
 import com.cos.cloud.user.model.vo.user.UserInfoVO;
 import com.querydsl.core.types.ExpressionUtils;
@@ -26,7 +25,7 @@ public class UserTestService {
     private JPAQueryFactory jpaQueryFactory;
 
     public UserInfoVO getById(Long id) {
-        QUserInfo qUserInfo = QUserInfo.userInfo;
+//        QUserInfo qUserInfo = QUserInfo.userInfo;
         // 1. jpa
 //        Predicate predicate = qUserInfo.id.eq(id);
 //        UserInfo userInfo = userRepository.findOne(predicate);
@@ -37,11 +36,11 @@ public class UserTestService {
 //        }
         // 3.
 //        jpaQueryFactory.selectFrom(qUserInfo).leftJoin(qUserInfo).on(qUserInfo.id.eq(qUserInfo.id)).where()
-        Predicate predicate = ExpressionUtils.and(qUserInfo.id.eq(id), qUserInfo.delFlag.eq(0));
-        UserInfo userInfo = userRepository.findOne(predicate);
-        if (userInfo != null) {
-            return userInfo.convert2VO();
-        }
+//        Predicate predicate = ExpressionUtils.and(qUserInfo.id.eq(id), qUserInfo.delFlag.eq(0));
+//        UserInfo userInfo = userRepository.findOne(predicate);
+//        if (userInfo != null) {
+//            return userInfo.convert2VO();
+//        }
         return null;
     }
 }
