@@ -22,6 +22,11 @@ public class DateUtils {
     private static final String SIMPLE_YMD_HMS = "yyyy-MM-dd HH:mm:ss";
     private static final String SIMPLE_YMD_HMS_S = "yyyy-MM-dd HH:mm:ss SSS";
 
+    public final static ThreadLocal<DateFormat> sdfDateMilliSeconds = new ThreadLocal<DateFormat>() {
+        protected DateFormat initialValue() {
+            return new SimpleDateFormat("yyyyMMddHHmmssSSS", Locale.SIMPLIFIED_CHINESE);
+        }
+    };
     public final static ThreadLocal<DateFormat> sdfYMDate = new ThreadLocal<DateFormat>() {
         protected DateFormat initialValue() {
             return new SimpleDateFormat(SIMPLE_YM, Locale.SIMPLIFIED_CHINESE);
