@@ -109,7 +109,6 @@ public class IdWorker {
                 log.error("dataCenterId or workId is not  configured");
                 throw new IllegalArgumentException(String.format("dataCenterId or workId is not  configured"));
             }
-//            single = new IdWorker(1L, 1L);
         }
 
         private IdWorker getInstance() {

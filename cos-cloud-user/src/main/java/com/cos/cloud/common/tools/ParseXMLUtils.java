@@ -15,11 +15,12 @@ import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
 
 /**
- * 功能：XML解析工具类
- *
- * @author lmb
- * @version 1.0
- * @date 2017-6-5
+ * Created with IntelliJ IDEA.
+ * @desc : xml解析工具
+ * @User: @Created by yangtk
+ * @Date: @Date 2019/9/24 11:56
+ * @Classname: ParseXMLUtils2
+ * @To change this template use File | Settings | File Templates.
  */
 public class ParseXMLUtils {
 
