@@ -19,23 +19,11 @@ public class MD5Utils {
     private final static String[] hexDigits = {"0", "1", "2", "3", "4", "5",
             "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
 
-    public static String generatePassword(String inputString, String username) throws NoSuchAlgorithmException {
-        return encoderByMd5(inputString, username);
+    public static String generatePassword(String inputString) throws NoSuchAlgorithmException {
+        return encoderByMd5(inputString);
     }
 
-    /**
-     * @param originString 需要机密的报文
-     * @param username     加密的账号
-     * @return
-     */
-    public static synchronized String encoderByMd5(String originString, String username) throws NoSuchAlgorithmException {
-        String encoder = encoderByMd5(originString);
-        if (StringUtils.isNotEmpty(username) && username.length() > 0) {
-            encoder += StringUtils.substring(username, username.length() - 1);
-        }
-        return encoder;
-    }
-
+    // md5进行加密
     public static synchronized String encoderByMd5(String originString) throws NoSuchAlgorithmException {
         if (StringUtils.isNotEmpty(originString)) {
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -84,7 +72,7 @@ public class MD5Utils {
      * @throws NoSuchAlgorithmException
      */
     public static boolean validatePassword(String password, String inputString) throws NoSuchAlgorithmException {
-        if (password.equals(encoderByMd5(inputString, "123456"))) {
+        if (password.equals(encoderByMd5(inputString))) {
             return true;
         } else {
             return false;
@@ -92,7 +80,7 @@ public class MD5Utils {
     }
 
     public static void main(String[] args) throws NoSuchAlgorithmException {
-        System.out.println(encoderByMd5("123", "456"));
-        System.out.println(validatePassword("E10ADC3949BA59ABBE56E057F20F883E6", "123456"));
+        System.out.println(encoderByMd5("123"));
+        System.out.println(validatePassword("E10ADC3949BA59ABBE56E057F20F883E", "123456"));
     }
 }
