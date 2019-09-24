@@ -3,6 +3,7 @@ package com.cos.cloud.common.tools;
 import io.swagger.models.auth.In;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
@@ -36,7 +37,21 @@ public class RandomCharsUtils {
         }
         return sb.toString();
     }
+    /*
+     * 订单开始交易的时间
+     */
+    public static String timeStart(){
+        return DateUtils.sdfDateMilli.get().format(new Date());
+    }
 
+    /*
+     * 订单逾期时间
+     */
+    public static String timeExpire(int activeTime){
+        Calendar now=Calendar.getInstance();
+        now.add(Calendar.MINUTE, activeTime);
+        return DateUtils.sdfDateMilli.get().format(now.getTimeInMillis());
+    }
     public static void main(String[] args) {
         System.out.println(getRandomChar(16));
     }

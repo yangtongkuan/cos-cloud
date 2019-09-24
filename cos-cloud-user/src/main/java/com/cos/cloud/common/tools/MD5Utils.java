@@ -36,6 +36,22 @@ public class MD5Utils {
             throw new IllegalArgumentException("加密报文不能为空");
         }
     }
+    public static String encoderByMd5(String origin, String charset) {
+        String resultString = null;
+        try {
+            resultString = new String(origin);
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            if (StringUtils.isNotEmpty(charset))
+                resultString = byteArrayToHexString(md.digest(resultString
+                        .getBytes()));
+            else
+                resultString = byteArrayToHexString(md.digest(resultString
+                        .getBytes(charset)));
+        } catch (Exception exception) {
+        }
+        return resultString;
+    }
+
 
     /**
      * 转换字节数组为十六进制字符串

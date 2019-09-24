@@ -147,11 +147,6 @@ public class ParseXMLUtils {
                 "      </BUSLIST>" +
                 "  </BODY>" +
                 "</ROOT>";
-//        System.out.println();
-//        Long sTime = DateUtils.getCurrentTimeMillis();
-//        xmlToMap(str1);
-//        System.out.println(DateUtils.getCurrentTimeMillis() - sTime);
-
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("Request", "getData");
         Map<String, Object> innerMap = new HashMap<>();
@@ -164,15 +159,23 @@ public class ParseXMLUtils {
         System.out.println(createXmlByMap("xml", result));
     }
 
-
     public static String createXmlByMap(String parentName, Map<String, Object> params, boolean isCDATA) {
+        return createXmlByMap(parentName,params,isCDATA,false);
+    }
+
+    public static String createXmlByMap(String parentName, Map<String, Object> params, boolean isCDATA,boolean format) {
         if (params == null || params.isEmpty() || StringUtils.isEmpty(parentName)) {
             return "";
         }
         Document doc = DocumentHelper.createDocument();
         doc.addElement(parentName);
         String xml = iteratorXml(doc.getRootElement(), params, isCDATA);
-        return formatXML(xml);
+        if(format){
+            return formatXML(xml);
+        }else{
+            return xml;
+        }
+
     }
 
     /**
@@ -242,7 +245,7 @@ public class ParseXMLUtils {
                 StringWriter stringWriter = new StringWriter();
                 OutputFormat format = new OutputFormat("	", true);//格式化，每一级前的空格
                 format.setNewLineAfterDeclaration(false);    //xml声明与内容是否添加空行
-                format.setSuppressDeclaration(false);        //是否设置xml声明头部
+                format.setSuppressDeclaration(true);        //是否设置xml声明头部 设置为true的时候不声明头部信息
                 format.setNewlines(true);        //设置分行
                 writer = new XMLWriter(stringWriter, format);
                 writer.write(document);
