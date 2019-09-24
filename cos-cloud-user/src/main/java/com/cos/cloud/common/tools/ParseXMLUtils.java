@@ -6,6 +6,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.*;
 
+import org.apache.commons.lang.StringUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
@@ -16,10 +17,11 @@ import org.dom4j.io.XMLWriter;
 
 /**
  * Created with IntelliJ IDEA.
+ *
  * @desc : xml解析工具
  * @User: @Created by yangtk
  * @Date: @Date 2019/9/24 11:56
- * @Classname: ParseXMLUtils2
+ * @Classname: ParseXMLUtils
  * @To change this template use File | Settings | File Templates.
  */
 public class ParseXMLUtils {
@@ -157,16 +159,19 @@ public class ParseXMLUtils {
         list.add("aaa");
         list.add("bbb");
         innerMap.put("test", list);
+        innerMap.put("test2", "bbb");
         result.put("data", innerMap);
         System.out.println(createXmlByMap("xml", result));
-
     }
 
 
     public static String createXmlByMap(String parentName, Map<String, Object> params, boolean isCDATA) {
+        if (params == null || params.isEmpty() || StringUtils.isEmpty(parentName)) {
+            return "";
+        }
         Document doc = DocumentHelper.createDocument();
         doc.addElement(parentName);
-        String xml = iteratorXml(doc.getRootElement(), parentName, params, isCDATA);
+        String xml = iteratorXml(doc.getRootElement(), params, isCDATA);
         return formatXML(xml);
     }
 
@@ -185,14 +190,14 @@ public class ParseXMLUtils {
      * MapToXml循环遍历创建xml节点
      * 此方法在value中加入CDATA标识符
      *
-     * @param element    根节点
-     * @param parentName 子节点名字
-     * @param params     map数据
+     * @param element 根节点
+     *                //     * @param parentName 子节点名字
+     * @param params  map数据
      * @return String-->Xml
      */
 
     @SuppressWarnings("unchecked")
-    public static String iteratorXml(Element element, String parentName, Map<String, Object> params, boolean isCDATA) {
+    public static String iteratorXml(Element element, Map<String, Object> params, boolean isCDATA) {
         Element e = element;
         Set<String> set = params.keySet();
         for (Iterator<String> it = set.iterator(); it.hasNext(); ) {
@@ -200,14 +205,14 @@ public class ParseXMLUtils {
             if (params.get(key) instanceof List) {
                 List<Object> valList = (List<Object>) params.get(key);
                 for (Object obj : valList) {
-                    if(obj instanceof Map){
-                        iteratorXml(e.addElement(key), key, (Map<String, Object>) params.get(key), isCDATA);
-                    }else{
+                    if (obj instanceof Map) {
+                        iteratorXml(e.addElement(key), (Map<String, Object>) params.get(key), isCDATA);
+                    } else {
                         e.addElement(key).addText(obj.toString());
                     }
                 }
             } else if (params.get(key) instanceof Map) {
-                iteratorXml(e.addElement(key), key, (Map<String, Object>) params.get(key), isCDATA);
+                iteratorXml(e.addElement(key), (Map<String, Object>) params.get(key), isCDATA);
             } else {
                 String value = params.get(key) == null ? "" : params.get(key).toString();
                 if (!isCDATA) {
