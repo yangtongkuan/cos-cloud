@@ -99,7 +99,7 @@ public class OrderNOUtils {
      *
      * @return SnowflakeId
      */
-    public synchronized String nextId() {
+    public synchronized String nextOrderNo() {
         long timestamp = timeGen();
 
         //如果当前时间小于上一次ID生成的时间戳，说明系统时钟回退过这个时候应当抛出异常
@@ -160,7 +160,7 @@ public class OrderNOUtils {
         System.out.println(System.currentTimeMillis());
         long startTime = System.currentTimeMillis();
         for (int i = 0; i < 1000000; i++) {
-            String orderNo = OrderNOUtils.getInstance().nextId();
+            String orderNo = OrderNOUtils.getInstance().nextOrderNo();
             System.out.println(orderNo);
         }
         System.out.println((System.currentTimeMillis() - startTime) / 1000 + "ms");

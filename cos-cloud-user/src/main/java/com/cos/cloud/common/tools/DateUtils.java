@@ -27,6 +27,11 @@ public class DateUtils {
             return new SimpleDateFormat("yyyyMMddHHmmssSSS", Locale.SIMPLIFIED_CHINESE);
         }
     };
+    public final static ThreadLocal<DateFormat> sdfDateMilli = new ThreadLocal<DateFormat>() {
+        protected DateFormat initialValue() {
+            return new SimpleDateFormat("yyyyMMddHHmmss", Locale.SIMPLIFIED_CHINESE);
+        }
+    };
     public final static ThreadLocal<DateFormat> sdfYMDate = new ThreadLocal<DateFormat>() {
         protected DateFormat initialValue() {
             return new SimpleDateFormat(SIMPLE_YM, Locale.SIMPLIFIED_CHINESE);
