@@ -1,12 +1,10 @@
 package com.cos.cloud.common.tools.wx;
 
 import com.cos.cloud.common.tools.MD5Utils;
-import com.cos.cloud.common.tools.OrderNOUtils;
-import com.cos.cloud.common.tools.ParseXMLUtils;
+import com.cos.cloud.common.tools.XMLUtils;
 import com.cos.cloud.common.tools.RandomCharsUtils;
 import org.apache.commons.lang.StringUtils;
 
-import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -41,7 +39,7 @@ public class WXSignUtils {
         String sign = createSign(apiKey, "UTF-8", params);
         params.put("sign", sign);
         Map<String,String > v = new HashMap<>();
-        String requestXml = ParseXMLUtils.createXmlByMap("xml", params,true,true);
+        String requestXml = XMLUtils.createXmlByMap("xml", params,true,true);
         System.out.println(requestXml);
     }
 

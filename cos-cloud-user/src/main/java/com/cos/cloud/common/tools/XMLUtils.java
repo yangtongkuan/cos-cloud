@@ -21,10 +21,10 @@ import org.dom4j.io.XMLWriter;
  * @desc : xml解析工具
  * @User: @Created by yangtk
  * @Date: @Date 2019/9/24 11:56
- * @Classname: ParseXMLUtils
+ * @Classname: XMLUtils
  * @To change this template use File | Settings | File Templates.
  */
-public class ParseXMLUtils {
+public class XMLUtils {
 
     // 必须有一个根节点才可以
     public static Map<String, Object> xmlToMap(String xml) {
