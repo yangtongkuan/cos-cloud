@@ -53,7 +53,7 @@ public class UserController {
     @RequestMapping(value = "/get")
     @SysLog(type = SysLogType.USER)
     public Object get(String sysCustomer, String username, UserInfo userInfo) {
-        UserInfo user = userService.getByUsername("o2o-test", "15269020596");
+        UserInfo user = userService.getByUsername(sysCustomer, username);
         return AjaxResult.successResult(user);
     }
 

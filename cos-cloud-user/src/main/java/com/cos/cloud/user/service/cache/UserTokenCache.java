@@ -2,7 +2,7 @@ package com.cos.cloud.user.service.cache;
 
 import com.cos.cloud.common.config.redis.RedisConfig;
 import com.cos.cloud.common.config.redis.RedisUtils;
-import com.cos.cloud.common.tools.ClientUtils;
+import com.cos.cloud.common.tools.ClientIpUtils;
 import com.cos.cloud.common.tools.DateUtils;
 import com.cos.cloud.common.tools.TokenUtils;
 import com.cos.cloud.user.dao.user.UserTokenRepository;
@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -52,7 +51,7 @@ public class UserTokenCache {
         }
         String token = TokenUtils.createToken();
         UserTokenInfo userToken = new UserTokenInfo();
-        userToken.setSysCustomer(sysCustomer).setUsername(username).setLoginIp(ClientUtils.getClientIp())
+        userToken.setSysCustomer(sysCustomer).setUsername(username).setLoginIp(ClientIpUtils.getClientIp())
                 .setExpireDate(RedisConfig.oneMonth)
                 .setDeviceType(deviceType).setTime(DateUtils.getCurrentTimeMillis()).setToken(token).setDateTime(DateUtils.sdfHMSDatTime.get().format(LocalDate.now()));
         this.saveUserToken(userToken);

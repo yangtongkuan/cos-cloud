@@ -1,7 +1,7 @@
 package com.cos.cloud.common.interceptor;
 
 import com.cos.cloud.common.tools.AjaxResult;
-import com.cos.cloud.common.tools.ClientUtils;
+import com.cos.cloud.common.tools.ClientIpUtils;
 import com.cos.cloud.user.service.ip.BanClientIpService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ public class ClientIpInterceptor extends HandlerInterceptorAdapter {
         Map<String, String[]> map = request.getParameterMap();
         String[] sysCustomers = map.get(SYS_CUSTOMER_CONTENT);
         if (sysCustomers != null && sysCustomers.length > 0) {
-            String clientIp = ClientUtils.getClientIp(request);
+            String clientIp = ClientIpUtils.getClientIp(request);
             String sysCustomer = sysCustomers[0];
             if (checkIpCanVisit(sysCustomer, clientIp)) {
                 return true;

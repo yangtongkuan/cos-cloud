@@ -7,7 +7,7 @@ import com.cos.cloud.user.model.bean.user.UserInfo;
 import com.cos.cloud.user.model.bean.log.SystemLog;
 import com.cos.cloud.user.service.syslog.SystemLogService;
 import com.cos.cloud.user.service.user.UserService;
-import com.cos.cloud.common.tools.ClientUtils;
+import com.cos.cloud.common.tools.ClientIpUtils;
 import com.cos.cloud.common.tools.DateUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.ArrayUtils;
@@ -57,7 +57,7 @@ public class SysLogAsyncTask {
         SysLog sysLog = methodSignature.getMethod().getAnnotation(SysLog.class);
         systemLog.setTitle(sysLog.title()).setType(sysLog.type().name());
         systemLog.setDescription(sysLog.description());
-        systemLog.setIp(ClientUtils.getClientIp(request));
+        systemLog.setIp(ClientIpUtils.getClientIp(request));
         int tokenIndex = ArrayUtils.indexOf(methodSignature.getParameterNames(), TOKEN);
         int sysCustomerIndex = ArrayUtils.indexOf(methodSignature.getParameterNames(), SYS_CUSTOMER);
         if (tokenIndex != -1 && sysCustomerIndex != -1) {

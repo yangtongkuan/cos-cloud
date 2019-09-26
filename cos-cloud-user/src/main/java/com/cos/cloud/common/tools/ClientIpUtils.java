@@ -7,14 +7,14 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @Classname ClientUtils
+ * @Classname ClientIpUtils
  * @Description 客户端工具类
  * @Date 2019/4/22 10:39
  * @Created by yangtk
  */
 
 //@UtilityClass // 标注为静态类  其内的方法都是静态的
-public class ClientUtils {
+public class ClientIpUtils {
 
     public static String getClientIp() {
         return getClientIp(((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest());
