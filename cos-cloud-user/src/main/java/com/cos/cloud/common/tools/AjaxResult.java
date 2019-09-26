@@ -97,14 +97,8 @@ public class AjaxResult {
 
     // 登录失效
     public static String errorLogoutResult() {
-//        JSONObject jsonObject = new JSONObject();
-//        jsonObject.put("status", 0);
-//        jsonObject.put("type", "notLogin");
-//        jsonObject.put("info", "当前帐号失效，请重新登录");
-//        return jsonObject.toString();
         return errorResult("当前帐号失效，请重新登录", "notLogin", null);
     }
-
 
     // 没有操作权限
     public static String errorAuthResult() {
@@ -113,16 +107,11 @@ public class AjaxResult {
 
     // 没有操作权限
     public static String errorBanIpResult(String... ip) {
-//        JSONObject jsonObject = new JSONObject();
-//        jsonObject.put("status", 0);
-//        jsonObject.put("type", "noAuth");
-//        jsonObject.put("info", "你没有操作权限");
         if (ip != null && ip.length > 0) {
             return errorResult("你的ip" + ip[0] + "被禁止访问,请联系客服", "banIp", null);
         } else {
             return errorResult("你的ip被禁止访问,请联系客服", "banIp", null);
         }
-
     }
 
 
