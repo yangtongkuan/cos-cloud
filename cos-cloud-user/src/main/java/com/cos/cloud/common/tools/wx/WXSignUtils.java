@@ -18,6 +18,7 @@ import java.util.*;
  * @To change this template use File | Settings | File Templates.
  */
 public class WXSignUtils {
+
     private static final String trade_type = "APP";
 
     public static void getSign(String appId, String mchId, String apiKey, String out_trade_no, Double payMoney, String notify_url, String body, String detail, int activeTime) {
